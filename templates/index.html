@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vehicle Insurance Prediction</title>
+    <link rel="stylesheet" href="/static/css/style.css">
+</head>
+<body>
+    <div class="container">
+        <h2>Vehicle Insurance Claim Prediction</h2>
+        <form action="/" method="POST">
+            
+            <div class="form-group">
+                <label>Gender (1 for Male, 0 for Female):</label>
+                <input type="number" name="Gender" required min="0" max="1">
+            </div>
+
+            <div class="form-group">
+                <label>Age:</label>
+                <input type="number" name="Age" required min="18" max="100">
+            </div>
+
+            <div class="form-group">
+                <label>Driving License (1 = Yes, 0 = No):</label>
+                <input type="number" name="Driving_License" required min="0" max="1">
+            </div>
+
+            <div class="form-group">
+                <label>Region Code:</label>
+                <input type="number" step="any" name="Region_Code" required>
+            </div>
+
+            <div class="form-group">
+                <label>Previously Insured (1 = Yes, 0 = No):</label>
+                <input type="number" name="Previously_Insured" required min="0" max="1">
+            </div>
+
+            <div class="form-group">
+                <label>Annual Premium:</label>
+                <input type="number" step="any" name="Annual_Premium" required>
+            </div>
+
+            <div class="form-group">
+                <label>Policy Sales Channel:</label>
+                <input type="number" step="any" name="Policy_Sales_Channel" required>
+            </div>
+
+            <div class="form-group">
+                <label>Vintage (Days):</label>
+                <input type="number" name="Vintage" required min="1" max="365">
+            </div>
+
+            <div class="form-group">
+                <label>Vehicle Age &lt; 1 Year (1 = Yes, 0 = No):</label>
+                <input type="number" name="Vehicle_Age_lt_1_Year" required min="0" max="1">
+            </div>
+
+            <div class="form-group">
+                <label>Vehicle Age &gt; 2 Years (1 = Yes, 0 = No):</label>
+                <input type="number" name="Vehicle_Age_gt_2_Years" required min="0" max="1">
+            </div>
+
+            <div class="form-group">
+                <label>Vehicle Damage Yes (1 = Yes, 0 = No):</label>
+                <input type="number" name="Vehicle_Damage_Yes" required min="0" max="1">
+            </div>
+
+            <button type="submit" class="btn">Predict</button>
+        </form>
+    </div>
+</body>
+</html>
