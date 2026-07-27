@@ -6,6 +6,7 @@ WORKDIR /app
 
 # Copy ONLY the requirements file first to leverage Docker caching
 COPY requirements.txt /app/
+COPY setup.py pyproject.toml /app/
 
 # Install the dependencies
 RUN pip install --no-cache-dir -r requirements.txt
