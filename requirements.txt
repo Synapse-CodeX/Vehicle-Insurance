@@ -12,6 +12,7 @@ certifi
 PyYAML
 boto3
 mypy-boto3-s3
+python-dotenv
 botocore
 fastapi
 python-multipart
