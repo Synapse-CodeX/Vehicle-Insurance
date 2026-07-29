@@ -3,60 +3,127 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Vehicle Insurance Prediction</title>
-    <!-- Corrected the CSS path -->
+    <title>Vehicle Insurance AI Predictor</title>
     <link rel="stylesheet" href="/static/css/style.css">
+    <!-- FontAwesome for Pro UI Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
-    <div class="container">
-        <h1>Vehicle Insurance Prediction</h1>
-
-        <form method="post" action="/">
-            <label for="Gender">Gender (1: Male, 0: Female):</label>
-            <input type="number" id="Gender" name="Gender" min="0" max="1" required>
-
-            <label for="Age">Age:</label>
-            <input type="number" id="Age" name="Age" required>
-
-            <label for="Driving_License">Driving License (0: No, 1: Yes):</label>
-            <input type="number" id="Driving_License" name="Driving_License" min="0" max="1" required>
-
-            <label for="Region_Code">Region Code:</label>
-            <input type="number" step="0.01" id="Region_Code" name="Region_Code" required>
-
-            <label for="Previously_Insured">Previously Insured (0: No, 1: Yes):</label>
-            <input type="number" id="Previously_Insured" name="Previously_Insured" min="0" max="1" required>
-
-            <label for="Annual_Premium">Annual Premium:</label>
-            <input type="number" step="0.01" id="Annual_Premium" name="Annual_Premium" required>
-
-            <label for="Policy_Sales_Channel">Policy Sales Channel:</label>
-            <input type="number" step="0.01" id="Policy_Sales_Channel" name="Policy_Sales_Channel" required>
-
-            <label for="Vintage">Vintage:</label>
-            <input type="number" id="Vintage" name="Vintage" required>
-
-            <label for="Vehicle_Age_lt_1_Year">Vehicle Age < 1 Year (0: No, 1: Yes):</label>
-            <input type="number" id="Vehicle_Age_lt_1_Year" name="Vehicle_Age_lt_1_Year" min="0" max="1" required>
-
-            <label for="Vehicle_Age_gt_2_Years">Vehicle Age > 2 Years (0: No, 1: Yes):</label>
-            <input type="number" id="Vehicle_Age_gt_2_Years" name="Vehicle_Age_gt_2_Years" min="0" max="1" required>
-
-            <label for="Vehicle_Damage_Yes">Vehicle Damage (0: No, 1: Yes):</label>
-            <input type="number" id="Vehicle_Damage_Yes" name="Vehicle_Damage_Yes" min="0" max="1" required>
-
-            <button type="submit">Predict</button>
-        </form>
-
-        <form method="get" action="/train">
-            <button type="submit" class="train-button">Train Model</button>
-        </form>
-
-        {% if context %}
-            <div class="result">
-                <h2>Result: {{ context }}</h2>
+    <div class="app-container">
+        <div class="main-card">
+            <div class="header-section">
+                <div class="badge">
+                    <i class="fa-solid fa-microchip"></i> AWS Production Instance
+                </div>
+                <h1>Vehicle Insurance Risk Engine</h1>
+                <p>Input customer parameters to evaluate policy conversion likelihood using machine learning.</p>
             </div>
-        {% endif %}
+
+            <form method="post" action="/">
+                <div class="form-grid">
+                    
+                    <div class="form-group">
+                        <label for="Gender">Gender</label>
+                        <select id="Gender" name="Gender" required>
+                            <option value="" disabled selected>Select gender</option>
+                            <option value="1">Male</option>
+                            <option value="0">Female</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="Age">Age</label>
+                        <input type="number" id="Age" name="Age" min="18" max="100" placeholder="e.g., 32" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="Driving_License">Driving License</label>
+                        <select id="Driving_License" name="Driving_License" required>
+                            <option value="" disabled selected>Has license?</option>
+                            <option value="1">Yes</option>
+                            <option value="0">No</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="Region_Code">Region Code</label>
+                        <input type="number" step="any" id="Region_Code" name="Region_Code" placeholder="e.g., 28.0" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="Previously_Insured">Previously Insured</label>
+                        <select id="Previously_Insured" name="Previously_Insured" required>
+                            <option value="" disabled selected>Insured before?</option>
+                            <option value="1">Yes</option>
+                            <option value="0">No</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="Annual_Premium">Annual Premium ($)</label>
+                        <input type="number" step="any" id="Annual_Premium" name="Annual_Premium" placeholder="e.g., 40000" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="Policy_Sales_Channel">Policy Sales Channel</label>
+                        <input type="number" step="any" id="Policy_Sales_Channel" name="Policy_Sales_Channel" placeholder="e.g., 152.0" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="Vintage">Vintage (Days with Company)</label>
+                        <input type="number" id="Vintage" name="Vintage" placeholder="e.g., 210" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="Vehicle_Age_lt_1_Year">Vehicle Age &lt; 1 Year</label>
+                        <select id="Vehicle_Age_lt_1_Year" name="Vehicle_Age_lt_1_Year" required>
+                            <option value="" disabled selected>Select option</option>
+                            <option value="1">Yes</option>
+                            <option value="0">No</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="Vehicle_Age_gt_2_Years">Vehicle Age &gt; 2 Years</label>
+                        <select id="Vehicle_Age_gt_2_Years" name="Vehicle_Age_gt_2_Years" required>
+                            <option value="" disabled selected>Select option</option>
+                            <option value="1">Yes</option>
+                            <option value="0">No</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group full-width">
+                        <label for="Vehicle_Damage_Yes">Past Vehicle Damage History</label>
+                        <select id="Vehicle_Damage_Yes" name="Vehicle_Damage_Yes" required>
+                            <option value="" disabled selected>Has vehicle suffered damage?</option>
+                            <option value="1">Yes (Damaged)</option>
+                            <option value="0">No</option>
+                        </select>
+                    </div>
+
+                    <div class="button-group">
+                        <button type="submit" class="btn-primary">
+                            <i class="fa-solid fa-bolt"></i> Run Prediction
+                        </button>
+                    </div>
+                </div>
+            </form>
+
+            <form method="get" action="/train" style="margin-top: 12px;">
+                <button type="submit" class="btn-secondary" style="width: 100%;">
+                    <i class="fa-solid fa-brain"></i> Trigger Model Training Pipeline
+                </button>
+            </form>
+
+            {% if context %}
+                <div class="result-card {% if context == 'Response-No' %}negative{% endif %}">
+                    <h2>
+                        <i class="fa-solid {% if context == 'Response-Yes' %}fa-circle-check fa-beat{% else %}fa-circle-xmark{% endif %}"></i> 
+                        Prediction Outcome: {{ context }}
+                    </h2>
+                </div>
+            {% endif %}
+        </div>
     </div>
 </body>
 </html>
